@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="./css/main.css" />
 		<link rel="manifest" href="/manifest.webmanifest">
 		<!-- <script src="serviceWorker.js"></script> -->
-				<script>
-					window.addEventListener('load', function() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register("/serviceWorker.js")
-            .then(function(registration) {
-                console.log("Service worker registration succeeded: ", registration);
-            }).catch(function(error) {
-                console.warn("Service worker registration failed: ", error);
-            });
-    }
-    else {
-        console.log('Service workers are not supported.');
-    }
-});
-				</script>
+		<script>
+			window.addEventListener('load', function() {
+				if ('serviceWorker' in navigator) {
+						navigator.serviceWorker.register("/serviceWorker.js")
+								.then(function(registration) {
+										console.log("Service worker registration succeeded: ", registration);
+								}).catch(function(error) {
+										console.warn("Service worker registration failed: ", error);
+								});
+				}
+				else {
+						console.log('Service workers are not supported.');
+				}
+			});
+		</script>
   </head>
   <body>
     <div class="wrapper" id="app">
