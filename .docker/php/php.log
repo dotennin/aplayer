@@ -1,0 +1,136 @@
+[25-May-2017 18:09:41 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'app', '123456', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollec in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 18:10:06 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'app', '123456', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollec in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 18:14:28 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'app', '123456', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollec in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:06:58 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:10:21 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=loca...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(42): Cake\Database\Schema\Coll in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:11:20 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=loca...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(42): Cake\Database\Schema\Coll in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:12:43 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:13:06 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=loca...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(42): Cake\Database\Schema\Coll in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:13:58 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:17:08 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:17:13 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:17:56 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:19:02 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:19:03 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:19:04 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:19:15 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
+[25-May-2017 19:19:19 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: Name or service not known in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php:47
+Stack trace:
+#0 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=mysq...', 'pydio', 'CHANGEME', Array)
+#1 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=mysq...', Array)
+#2 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Schema/CachedCo in /srv/www/39repo/app/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php on line 47
