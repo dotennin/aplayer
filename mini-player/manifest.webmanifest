@@ -1,10 +1,11 @@
 {
-	"name": "DLsite Play",
-	"short_name": "DLsite Play",
+	"name": "Aplayer",
+	"short_name": "Aplayer",
 	"display": "standalone",
 	"background_color": "#eee",
 	"theme_color": "#188aea",
-	"start_url": "/#/library",
+	"start_url": "/",
+	"scope": "/",
 	"icons": [
 		{
 			"src": "\/icons\/android-chrome-36x36.png",

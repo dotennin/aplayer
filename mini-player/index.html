@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Mini Player</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -13,8 +14,23 @@
       href="https://meyerweb.com/eric/tools/css/reset/reset.css"
     />
     <link rel="stylesheet" href="./css/main.css" />
-    <title>Mini Player</title>
-		<script src="http://localhost:8097"></script>
+		<link rel="manifest" href="/manifest.webmanifest">
+		<!-- <script src="serviceWorker.js"></script> -->
+				<script>
+					window.addEventListener('load', function() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("/serviceWorker.js")
+            .then(function(registration) {
+                console.log("Service worker registration succeeded: ", registration);
+            }).catch(function(error) {
+                console.warn("Service worker registration failed: ", error);
+            });
+    }
+    else {
+        console.log('Service workers are not supported.');
+    }
+});
+				</script>
   </head>
   <body>
     <div class="wrapper" id="app">

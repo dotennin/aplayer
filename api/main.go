@@ -38,16 +38,10 @@ func productCount(w http.ResponseWriter, r *http.Request) {
 	setHeader(w, data, err)
 }
 
-func manifestWebmanifest(w http.ResponseWriter, r *http.Request) {
-	data, err := ioutil.ReadFile("./json/manifestWebmanifest.json")
-	setHeader(w, data, err)
-}
-
 func main() {
 	http.HandleFunc("/api/authorize", authorize)
 	http.HandleFunc("/api/ignore", ignore)
 	http.HandleFunc("/api/product_count", productCount)
-	http.HandleFunc("/manifest.webmanifest", manifestWebmanifest)
 
 	log.Fatal(http.ListenAndServe(":80", nil))
 }
