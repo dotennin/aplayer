@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -38,10 +36,26 @@ func productCount(w http.ResponseWriter, r *http.Request) {
 	setHeader(w, data, err)
 }
 
+func getPath(w http.ResponseWriter, r *http.Request) {
+		files, err := ioutil.ReadDir("./")
+    if err != nil {
+        log.Fatal(err)
+				log.Fatal(files)
+    }
+ 
+		var dataString string
+    for _, f := range files {
+			dataString += f.Name() + " d"
+    }
+		setHeader(w, []byte(dataString), err)
+}
+
 func main() {
 	http.HandleFunc("/api/authorize", authorize)
 	http.HandleFunc("/api/ignore", ignore)
 	http.HandleFunc("/api/product_count", productCount)
+	http.HandleFunc("/api/getPath", getPath)
+
 
 	log.Fatal(http.ListenAndServe(":80", nil))
 }

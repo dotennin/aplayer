@@ -20,7 +20,7 @@ install:
 	.docker/install.sh $(SERVER_NAME) $(NGINX_ROOT) $(WORKING_DIR) $(MYSQL_ROOT_PASSWORD) $(MYSQL_DATABASE) $(MYSQL_USER) $(MYSQL_PASSWORD)
 
 up:
-	cd $(PWD)/.docker/ && \
+	cd .docker/ && \
 		export SERVER_NAME=$(SERVER_NAME) && \
 		export NGINX_ROOT=$(NGINX_ROOT) && \
 		export WORKING_DIR=$(WORKING_DIR) && \
@@ -28,21 +28,21 @@ up:
 		export MYSQL_DATABASE=$(MYSQL_DATABASE) && \
 		export MYSQL_USER=$(MYSQL_USER) && \
 		export MYSQL_PASSWORD=$(MYSQL_PASSWORD) && \
-		docker-compose -p $(SERVER_NAME) up
+		docker-compose -p $(SERVER_NAME) up --remove-orphans
 
 .PHONY: remove
 remove:
-	cd $(PWD)/.docker/ && \
+	cd .docker/ && \
 	docker-compose -p $(SERVER_NAME) down
 	sudo sh -c "sed -i -e 's/127.0.0.1   $(SERVER_NAME)//g' /etc/hosts"
 down:
-	cd $(PWD)/.docker/ && \
+	cd .docker/ && \
 	docker-compose -p $(SERVER_NAME) down
 monitor:
 	docker stats $(docker inspect -f {{.NAME}} $(docker ps -q))
 
 .PHONY: ssh $(t)
 ssh:
-	docker exec -it $(SERVER_NAME).$(filter-out $@,$(MAKECMDGOALS)) /bin/bash
+	docker exec -it $(filter-out $@,$(MAKECMDGOALS)) /bin/sh
 %:
 	@:

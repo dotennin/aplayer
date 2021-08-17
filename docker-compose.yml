@@ -1,8 +1,0 @@
-services:
-  dlsite-server:
-    image: nginx:alpine
-      # restart: always
-    volumes:
-      - "./dist/:/usr/share/nginx/html:ro"
-    ports:
-      - "3000:80"

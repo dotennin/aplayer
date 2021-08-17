@@ -1,0 +1,19 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+- name: realize
+  path: .
+  commands: 
+    run:           # 追記
+      status: true # 追記
+  watcher:
+    extensions:
+    - go
+    paths:
+    - / 
+    ignored_paths:
+    - .git
+    - .realize
+    - vendor

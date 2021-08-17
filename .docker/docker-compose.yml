@@ -7,6 +7,7 @@ services:
     ports:
       - 80:80
       - 443:443
+    restart: always
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx-proxy/vhost.d:/etc/nginx/vhost.d:ro
@@ -14,20 +15,23 @@ services:
   dlsite-server:
     image: nginx:alpine
     container_name: dlsite-server
-      # restart: always
+    restart: always
     volumes:
       - ../mini-player/:/usr/share/nginx/html:ro
-    # ports:
-    #   - 3000:80
     environment:
       - VIRTUAL_HOST=${SERVER_NAME}
+  file-server:
+    image: nginx:alpine
+    container_name: file-server
+    restart: always
+    volumes:
+      - /srv/dev-disk-by-uuid-0182a132-5def-4c38-8316-f9b31120dd09/private/mp3/:/usr/share/nginx/html/mp3:ro
+      - ./nginx/conf.d/:/etc/nginx/conf.d
   api-server:
     build: golang
     container_name: api-server
-    # tty: true
-    ports:
-      - 8080:80
+    tty: true
+    restart: always
     volumes:
       - ../api/:/app
-    # environment:
-    #   - VIRTUAL_HOST=api.dotenn.com
+      - /srv/dev-disk-by-uuid-0182a132-5def-4c38-8316-f9b31120dd09/private/mp3/:/mp3:ro
