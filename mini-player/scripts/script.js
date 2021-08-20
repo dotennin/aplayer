@@ -201,22 +201,22 @@ new Vue({
         !this.tracks[this.currentTrackIndex].favorited;
     },
 
-		playMedia(path) {
-			this.audio.src = `mp3${path}`
-			this.audio.play()
-		},
-		
+    playMedia(path) {
+      this.audio.src = `mp3${path}`;
+			this.play()
+    },
+
     async getPath(path) {
-      const pathList = await fetch(`api/path?name=${encodeURI(path)}`).then(
-        (r) => r.json()
+      let pathList = await fetch(`api/path?name=${encodeURI(path)}`).then((r) =>
+        r.json()
       );
 
       const slashCount = path.match(/\//g);
       const isCataloguePath = slashCount && slashCount.length === 1;
       const shouldDisplayCover = slashCount && slashCount.length > 1;
-      const shouldPlayMedia = /.[mp3|mp4|wav]$/.test(path);
+      const shouldPlayMedia = /(\.mp3)|(\.mp4)|(\.wav)$/.test(path);
       if (shouldPlayMedia) {
-				return this.playMedia(path)
+        return this.playMedia(path);
       }
 
       if (isCataloguePath) {
@@ -227,10 +227,13 @@ new Vue({
         });
       }
       if (shouldDisplayCover) {
-        pathList.forEach((dir) => {
-          if (/.[png|jpg|jepg]$/.test(dir.Name)) {
+        pathList = pathList.filter((dir) => {
+          // don:t need to display image
+          if (/(\.png)|(\.jpg)|(\.jepg)$/.test(dir.Name)) {
             this.coverList.push(encodeURI("mp3" + dir.Path));
+            return false;
           }
+          return true;
         });
       }
 
