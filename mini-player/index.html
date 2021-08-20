@@ -34,24 +34,36 @@
   </head>
   <body>
     <div class="wrapper" id="app">
+			<div class="player">
+				<ul>
+					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir.Path)" style="padding: 6px 0; border: 1px solid; cursor: pointer">
+						{{ dir.Name }}
+					</li>
+				</ul>
+			</div>
       <div class="player">
         <div class="player__top">
           <div class="player-cover">
             <transition-group :name="transitionName">
-                <div class="player-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${track.cover})` }"  v-for="(track, $index) in tracks" :key="$index"></div>
+                <div class="player-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover"></div>
             </transition-group>
           </div>
           <div class="player-controls">
+            <div class="player-controls__item" @click="prevTrack">
+              <svg class="icon">
+                <use xlink:href="#icon-hamburger-menu"></use>
+              </svg>
+            </div>
             <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
               <svg class="icon">
                 <use xlink:href="#icon-heart-o"></use>
               </svg>
             </div>
-            <a :href="currentTrack.url" target="_blank" class="player-controls__item">
-              <svg class="icon">
-                <use xlink:href="#icon-link"></use>
-              </svg>
-            </a>
+            <!-- <a :href="currentTrack.url" target="_blank" class="player-controls__item"> -->
+            <!--   <svg class="icon"> -->
+            <!--     <use xlink:href="#icon-link"></use> -->
+            <!--   </svg> -->
+            <!-- </a> -->
             <div class="player-controls__item" @click="prevTrack">
               <svg class="icon">
                 <use xlink:href="#icon-prev"></use>
@@ -85,7 +97,7 @@
         </div>
         <div v-cloak></div>
       </div>
-      <a href="https://github.com/muhammederdem/mini-player" target="_blank" class="github-btn">
+      <a href="https://github.com/dotennin/aplayer" target="_blank" class="github-btn">
         See on GitHub
       </a>
     </div>
@@ -138,6 +150,12 @@
           <path d="M29.696 13.696h-14.688l4.576-4.576c0.864-0.864 0.864-2.336 0-3.232-0.864-0.864-2.336-0.864-3.232 0l-8.448 8.48c-0.864 0.864-0.864 2.336 0 3.232l8.448 8.448c0.448 0.448 1.056 0.672 1.632 0.672s1.184-0.224 1.632-0.672c0.864-0.864 0.864-2.336 0-3.232l-4.608-4.576h14.688c1.248 0 2.304-1.024 2.304-2.304s-1.024-2.24-2.304-2.24z"></path>
           <path d="M2.304 5.248c-1.248 0-2.304 1.024-2.304 2.304v16.928c0 1.248 1.024 2.304 2.304 2.304s2.304-1.024 2.304-2.304v-16.928c-0.064-1.28-1.056-2.304-2.304-2.304z"></path>
         </symbol>
+				<symbol id="icon-hamburger-menu" viewBox="0 0 100 80">
+					<title>menu</title>
+					<rect width="100" height="20"></rect>
+					<rect y="30" width="100" height="20"></rect>
+					<rect y="60" width="100" height="20"></rect>
+				</symbol>
       </defs>
     </svg>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
