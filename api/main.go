@@ -25,6 +25,8 @@ type FileInfo struct {
 type PathQuery struct {
 	Name string
 }
+var fileIgnore []string
+
 
 func setHeader(w http.ResponseWriter, data []byte, err error) {
 	// js, err := json.Marshal(data)
@@ -43,12 +45,21 @@ func authorize(w http.ResponseWriter, r *http.Request) {
 	setHeader(w, data, err)
 }
 
+func include(array []string, str string) bool {
+	for _, a := range array {
+		if strings.Contains(str, a) {
+			return true
+		}
+	}
+	return false
+}
+
 func getPath(w http.ResponseWriter, r *http.Request) {
+		// decode the query path
+		var pathQuery PathQuery
 		decodedValue, err := url.QueryUnescape(r.URL.RawQuery)
 		queryParams := strings.Split(decodedValue, "&")
 		sort.Strings(queryParams)
-
-		var pathQuery PathQuery
 		for _, queryParam :=range queryParams {
 			params := strings.Split(queryParam, "=")
 			if strings.ToLower(params[0]) == "name" {
@@ -64,6 +75,9 @@ func getPath(w http.ResponseWriter, r *http.Request) {
  
 		var fileInfoList []FileInfo
     for _, f := range files {
+			if include(fileIgnore, f.Name()) {
+				continue
+			}
 			fileInfo := FileInfo{Name: f.Name(), Size: f.Size(), Mode: f.Mode(), ModTime: f.ModTime(), IsDir: f.IsDir(), Path: pathQuery.Name + "/" + f.Name()}
 			fileInfoList = append(fileInfoList, fileInfo)
     }
@@ -76,6 +90,7 @@ func getPath(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fileIgnore = []string{".DS_Store", "._"}
 	http.HandleFunc("/api/authorize", authorize)
 	http.HandleFunc("/api/path", getPath)
 
