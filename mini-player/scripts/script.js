@@ -8,107 +8,24 @@ new Vue({
       duration: null,
       currentTime: null,
       isTimerPlaying: false,
-      tracks: [
-        {
-          name: "Everybody Knows",
-          artist: "Leonard Cohen",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/2.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3",
-          url: "https://www.youtube.com/watch?v=Lin-a2lTelg",
-          favorited: true,
-        },
-        {
-          name: "Mekanın Sahibi",
-          artist: "Norm Ender",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/1.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
-          url: "https://www.youtube.com/watch?v=z3wAjJXbYzA",
-          favorited: false,
-        },
-        {
-          name: "Extreme Ways",
-          artist: "Moby",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/3.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/3.mp3",
-          url: "https://www.youtube.com/watch?v=ICjyAe9S54c",
-          favorited: false,
-        },
-        {
-          name: "Butterflies",
-          artist: "Sia",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/4.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/4.mp3",
-          url: "https://www.youtube.com/watch?v=kYgGwWYOd9Y",
-          favorited: false,
-        },
-        {
-          name: "The Final Victory",
-          artist: "Haggard",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/5.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/5.mp3",
-          url: "https://www.youtube.com/watch?v=0WlpALnQdN8",
-          favorited: true,
-        },
-        {
-          name: "Genius ft. Sia, Diplo, Labrinth",
-          artist: "LSD",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/6.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/6.mp3",
-          url: "https://www.youtube.com/watch?v=HhoATZ1Imtw",
-          favorited: false,
-        },
-        {
-          name: "The Comeback Kid",
-          artist: "Lindi Ortega",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/7.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3",
-          url: "https://www.youtube.com/watch?v=me6aoX0wCV8",
-          favorited: true,
-        },
-        {
-          name: "Overdose",
-          artist: "Grandson",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/8.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/8.mp3",
-          url: "https://www.youtube.com/watch?v=00-Rl3Jlx-o",
-          favorited: false,
-        },
-        {
-          name: "Rag'n'Bone Man",
-          artist: "Human",
-          cover:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/9.jpg",
-          source:
-            "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/9.mp3",
-          url: "https://www.youtube.com/watch?v=L3wKzyIN1yk",
-          favorited: false,
-        },
-      ],
+      tracks: [],
       currentTrack: null,
       currentTrackIndex: 0,
       transitionName: null,
       pathList: [],
       coverList: [],
+			currentCoverIndex: 0,
     };
   },
   methods: {
-    play() {
+    play(track) {
+      if (track) {
+        this.currentTrack = track;
+        this.audio.src = `mp3${track.Path}`;
+      } else if (!this.audio.src) {
+        this.audio.src = `mp3${this.tracks[0].Path}`;
+      }
+
       if (this.audio.paused) {
         this.audio.play();
         this.isTimerPlaying = true;
@@ -183,6 +100,9 @@ new Vue({
       this.currentTrack = this.tracks[this.currentTrackIndex];
       this.resetPlayer();
     },
+		nextCover() {
+			this.currentCoverIndex  = this.currentCoverIndex + 1 < this.coverList.length ? this.currentCoverIndex + 1 : 0
+		},
     resetPlayer() {
       this.barWidth = 0;
       this.circleLeft = 0;
@@ -197,27 +117,29 @@ new Vue({
       }, 300);
     },
     favorite() {
-      this.tracks[this.currentTrackIndex].favorited =
-        !this.tracks[this.currentTrackIndex].favorited;
+      this.tracks[this.currentTrackIndex].Favorited =
+        !this.tracks[this.currentTrackIndex].Favorited;
     },
+		isMediafile(dir) {
+			return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)$/.test(dir.Path);
+		},
 
-    playMedia(path) {
-      this.audio.src = `mp3${path}`;
-			this.play()
-    },
+    async getPath(dir) {
+      if (!dir) {
+        dir = { Path: "" };
+      }
+      const shouldPlayMedia = this.isMediafile(dir);
+      if (shouldPlayMedia) {
+        return this.play(dir);
+      }
 
-    async getPath(path) {
-      let pathList = await fetch(`api/path?name=${encodeURI(path)}`).then((r) =>
-        r.json()
+      let pathList = await fetch(`api/path?name=${encodeURI(dir.Path)}`).then(
+        (r) => r.json()
       );
 
-      const slashCount = path.match(/\//g);
+      const slashCount = dir.Path.match(/\//g);
       const isCataloguePath = slashCount && slashCount.length === 1;
-      const shouldDisplayCover = slashCount && slashCount.length > 1;
-      const shouldPlayMedia = /(\.mp3)|(\.mp4)|(\.wav)$/.test(path);
-      if (shouldPlayMedia) {
-        return this.playMedia(path);
-      }
+      const isInCatalogDir = slashCount && slashCount.length > 1;
 
       if (isCataloguePath) {
         // clear cover list while accessing catalog path
@@ -226,15 +148,19 @@ new Vue({
           dir.Name = dir.Name.split("@")[1];
         });
       }
-      if (shouldDisplayCover) {
-        pathList = pathList.filter((dir) => {
+      if (isInCatalogDir) {
+        pathList = pathList.filter((d) => {
           // don:t need to display image
-          if (/(\.png)|(\.jpg)|(\.jepg)$/.test(dir.Name)) {
-            this.coverList.push(encodeURI("mp3" + dir.Path));
+          if (/(\.png)|(\.jpg)|(\.jpeg)$/.test(d.Name)) {
+            this.coverList.push(encodeURI("mp3" + d.Path));
             return false;
           }
           return true;
         });
+        this.tracks = pathList
+          .filter((dir) => this.isMediafile(dir))
+          .map((t) => ({ Favorited: false, ...t }));
+        this.currentTrack = this.tracks[0];
       }
 
       this.pathList = pathList;
@@ -244,7 +170,6 @@ new Vue({
     let vm = this;
     this.currentTrack = this.tracks[0];
     this.audio = new Audio();
-    this.audio.src = this.currentTrack.source;
     this.audio.ontimeupdate = function () {
       vm.generateTime();
     };

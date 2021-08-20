@@ -36,16 +36,16 @@
     <div class="wrapper" id="app">
 			<div class="player">
 				<ul>
-					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir.Path)" style="padding: 6px 0; border: 1px solid; cursor: pointer">
+					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" style="padding: 6px 0; border: 1px solid; cursor: pointer">
 						{{ dir.Name }}
 					</li>
 				</ul>
 			</div>
-      <div class="player">
+			<div class="player" v-if="tracks.length > 0">
         <div class="player__top">
-          <div class="player-cover">
+					<div class="player-cover">
             <transition-group :name="transitionName">
-                <div class="player-cover__item" v-if="$index === currentTrackIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover"></div>
+                <div class="player-cover__item" v-if="$index === currentCoverIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover" @click="nextCover"></div>
             </transition-group>
           </div>
           <div class="player-controls">
@@ -54,7 +54,7 @@
                 <use xlink:href="#icon-hamburger-menu"></use>
               </svg>
             </div>
-            <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
+            <div class="player-controls__item -favorite" :class="{ active : currentTrack?.Favorited }" @click="favorite">
               <svg class="icon">
                 <use xlink:href="#icon-heart-o"></use>
               </svg>
@@ -74,7 +74,7 @@
                 <use xlink:href="#icon-next"></use>
               </svg>
             </div>
-            <div class="player-controls__item -xl js-play" @click="play">
+            <div class="player-controls__item -xl js-play" @click="play()">
               <svg class="icon">
                 <use xlink:href="#icon-pause" v-if="isTimerPlaying"></use>
                 <use xlink:href="#icon-play" v-else></use>
@@ -85,8 +85,8 @@
         <div class="progress" ref="progress">
           <div class="progress__top">
             <div class="album-info" v-if="currentTrack">
-              <div class="album-info__name">{{ currentTrack.artist }}</div>
-              <div class="album-info__track">{{ currentTrack.name }}</div>
+              <div class="album-info__name">{{ currentTrack.Name }}</div>
+              <div class="album-info__track">{{ currentTrack.Name }}</div>
             </div>
             <div class="progress__duration">{{ duration }}</div>
           </div>
