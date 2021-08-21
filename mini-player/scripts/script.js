@@ -14,16 +14,17 @@ new Vue({
       transitionName: null,
       pathList: [],
       coverList: [],
-			currentCoverIndex: 0,
+      currentCoverIndex: 0,
     };
   },
   methods: {
     play(track) {
       if (track) {
         this.currentTrack = track;
-        this.audio.src = `mp3${track.Path}`;
+        this.audio.src = this.getSource(track);
       } else if (!this.audio.src) {
-        this.audio.src = `mp3${this.tracks[0].Path}`;
+        this.currentTrack = this.tracks[0];
+        this.audio.src = this.getSource(this.tracks[0]);
       }
 
       if (this.audio.paused) {
@@ -81,33 +82,45 @@ new Vue({
     prevTrack() {
       this.transitionName = "scale-in";
       this.isShowCover = false;
-      if (this.currentTrackIndex > 0) {
-        this.currentTrackIndex--;
+      let currentTrackIndex = this.tracks.findIndex(
+        (track) => track === this.currentTrack
+      );
+      if (currentTrackIndex > 0) {
+        currentTrackIndex--;
       } else {
-        this.currentTrackIndex = this.tracks.length - 1;
+        currentTrackIndex = this.tracks.length - 1;
       }
-      this.currentTrack = this.tracks[this.currentTrackIndex];
+      this.currentTrack = this.tracks[currentTrackIndex];
       this.resetPlayer();
     },
     nextTrack() {
       this.transitionName = "scale-out";
       this.isShowCover = false;
-      if (this.currentTrackIndex < this.tracks.length - 1) {
-        this.currentTrackIndex++;
+      let currentTrackIndex = this.tracks.findIndex(
+        (track) => track === this.currentTrack
+      );
+      if (currentTrackIndex < this.tracks.length - 1) {
+        currentTrackIndex++;
       } else {
-        this.currentTrackIndex = 0;
+        currentTrackIndex = 0;
       }
-      this.currentTrack = this.tracks[this.currentTrackIndex];
+      this.currentTrack = this.tracks[currentTrackIndex];
       this.resetPlayer();
     },
-		nextCover() {
-			this.currentCoverIndex  = this.currentCoverIndex + 1 < this.coverList.length ? this.currentCoverIndex + 1 : 0
+    nextCover() {
+      this.currentCoverIndex =
+        this.currentCoverIndex + 1 < this.coverList.length
+          ? this.currentCoverIndex + 1
+          : 0;
+    },
+		getSource(dir) {
+			return `mp3/${dir.Path}`
 		},
     resetPlayer() {
       this.barWidth = 0;
       this.circleLeft = 0;
       this.audio.currentTime = 0;
-      this.audio.src = this.currentTrack.source;
+      this.audio.src = this.getSource(this.currentTrack);
       setTimeout(() => {
         if (this.isTimerPlaying) {
           this.audio.play();
@@ -120,9 +133,9 @@ new Vue({
       this.tracks[this.currentTrackIndex].Favorited =
         !this.tracks[this.currentTrackIndex].Favorited;
     },
-		isMediafile(dir) {
-			return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)$/.test(dir.Path);
-		},
+    isMediafile(dir) {
+      return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)$/.test(dir.Path);
+    },
 
     async getPath(dir) {
       if (!dir) {

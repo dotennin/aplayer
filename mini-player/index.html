@@ -31,24 +31,58 @@
 				}
 			});
 		</script>
+<style>
+ul, ol {
+  background: #fffde8;
+  box-shadow: 0px 0px 0px 10px #fffde8;/*線の外側*/
+  border: dashed 2px #ffb03f;/*破線*/
+  border-radius: 9px;
+  margin-left: 10px;/*はみ出ないように調整*/
+  margin-right: 10px;/*はみ出ないように調整*/
+  padding: 0.5em 0.5em 0.5em 2em;
+}
+
+ul li, ol li {
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+li.active {
+	color: #71829e;
+	transition: all 0.3s ease-in-out;
+}
+li.active::before {
+	content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #fff;
+  transform: scale(0.5);
+  opacity: 0;
+  box-shadow: 0px 5px 10px 0px rgb(76 70 124 / 20%);
+}
+
+
+}
+</style>
   </head>
   <body>
     <div class="wrapper" id="app">
 			<div class="player">
 				<ul>
-					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" style="padding: 6px 0; border: 1px solid; cursor: pointer">
+					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" :class="{active : currentTrack === dir}">
 						{{ dir.Name }}
 					</li>
 				</ul>
 			</div>
-			<div class="player" v-if="tracks.length > 0">
+			<div class="player" v-if="coverList.length > 0">
         <div class="player__top">
 					<div class="player-cover">
             <transition-group :name="transitionName">
                 <div class="player-cover__item" v-if="$index === currentCoverIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover" @click="nextCover"></div>
             </transition-group>
           </div>
-          <div class="player-controls">
+					<div class="player-controls" v-if="tracks.length > 0">
             <div class="player-controls__item" @click="prevTrack">
               <svg class="icon">
                 <use xlink:href="#icon-hamburger-menu"></use>
@@ -86,7 +120,6 @@
           <div class="progress__top">
             <div class="album-info" v-if="currentTrack">
               <div class="album-info__name">{{ currentTrack.Name }}</div>
-              <div class="album-info__track">{{ currentTrack.Name }}</div>
             </div>
             <div class="progress__duration">{{ duration }}</div>
           </div>
