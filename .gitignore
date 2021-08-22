@@ -22,3 +22,4 @@ bin-release/
 
 .docker/persistent/
 NNP/
+node_modules
