@@ -19,13 +19,14 @@ type FileInfo struct {
 	ModTime time.Time
 	IsDir bool
 	Path string
-	Sys interface{}
+	Thumbnail string
 }
 
 type PathQuery struct {
 	Name string
 }
 var fileIgnore []string
+var imageExtensions []string
 
 
 func setHeader(w http.ResponseWriter, data []byte, err error) {
@@ -78,7 +79,20 @@ func getPath(w http.ResponseWriter, r *http.Request) {
 			if include(fileIgnore, f.Name()) {
 				continue
 			}
-			fileInfo := FileInfo{Name: f.Name(), Size: f.Size(), Mode: f.Mode(), ModTime: f.ModTime(), IsDir: f.IsDir(), Path: pathQuery.Name + "/" + f.Name()}
+			// get catalog thumbnail
+			var thumbnail string
+			if strings.Contains(f.Name(), "@") {
+				subDir := "/mp3" + pathQuery.Name + "/" + f.Name()
+				subFiles, _ := ioutil.ReadDir(subDir)
+					for _, subF := range subFiles {
+						if include(imageExtensions, subF.Name()){
+							thumbnail = pathQuery.Name + "/" + f.Name() + "/" + subF.Name()
+							continue
+						}
+					}
+
+			}
+			fileInfo := FileInfo{Name: f.Name(), Size: f.Size(), Mode: f.Mode(), ModTime: f.ModTime(), IsDir: f.IsDir(), Path: pathQuery.Name + "/" + f.Name(), Thumbnail: thumbnail}
 			fileInfoList = append(fileInfoList, fileInfo)
     }
 
@@ -91,6 +105,7 @@ func getPath(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	fileIgnore = []string{".DS_Store", "._"}
+	imageExtensions = []string{".png", ".jpg", ".jpeg"}
 	http.HandleFunc("/api/authorize", authorize)
 	http.HandleFunc("/api/path", getPath)
 

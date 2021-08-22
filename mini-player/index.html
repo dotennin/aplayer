@@ -59,22 +59,28 @@ li.active::before {
   background: #fff;
   transform: scale(0.5);
   opacity: 0;
-  box-shadow: 0px 5px 10px 0px rgb(76 70 124 / 20%);
-}
-
-
-}
+  box-shadow: 0px 5px 10px 0px rgb(76 70 124 / 20%);@click="getPath(dir)"
+}@click="getPath(dir)"
 </style>
   </head>
   <body>
-    <div class="wrapper" id="app">
-			<div class="player">
-				<ul>
-					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" :class="{active : currentTrack === dir}">
-						{{ dir.Name }}
-					</li>
-				</ul>
+	<div class="wrapper" id="app">
+		<section v-if="isCataloguePath">
+			<h1 class="title">Hover over the cards</h1>
+			<div class="container">
+				<card v-for="(dir) in pathList" :key="dir.Name" @click.native="getPath(dir)" :data-image="'mp3' + dir.Thumbnail">
+					<h1 slot="header">{{ dir.Name }}</h1>
+					<p slot="content">{{ dir.RJNumber }}</p>
+				</card>
 			</div>
+		</section>
+	<div v-if="!isCataloguePath" class="player">
+			<ul>
+				<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" :class="{active : currentTrack === dir}">
+					{{ dir.Name }}
+				</li>
+		</ul>
+	</div>
 			<div class="player" v-if="coverList.length > 0">
         <div class="player__top">
 					<div class="player-cover">
@@ -192,6 +198,7 @@ li.active::before {
       </defs>
     </svg>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <script src="./scripts/script.js"></script>
+		<script src="/src/app.js"></script>
+		<script src="/src/components/title-cards.js"></script>
   </body>
 </html>

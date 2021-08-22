@@ -1,0 +1,15 @@
+{
+  "name": "mini-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "serviceWorker.js",
+  "scripts": {
+    "test": "bla bla bla",
+    "sass": "node-sass -w css/ -o css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
