@@ -68,7 +68,7 @@ li.active::before {
 		<section v-if="isCataloguePath">
 			<h1 class="title">Hover over the cards</h1>
 			<div class="container">
-				<card v-for="(dir) in pathList" :key="dir.Name" @click.native="getPath(dir)" :data-image="'mp3' + dir.Thumbnail">
+				<card v-for="(dir) in pathList" :key="dir.Name" @click.native="getPath(dir)" :data-image="`mp3${dir.Thumbnail}`">
 					<h1 slot="header">{{ dir.Name }}</h1>
 					<p slot="content">{{ dir.RJNumber }}</p>
 				</card>

@@ -85,12 +85,14 @@ func getPath(w http.ResponseWriter, r *http.Request) {
 				subDir := "/mp3" + pathQuery.Name + "/" + f.Name()
 				subFiles, _ := ioutil.ReadDir(subDir)
 					for _, subF := range subFiles {
-						if include(imageExtensions, subF.Name()){
-							thumbnail = pathQuery.Name + "/" + f.Name() + "/" + subF.Name()
+						if include(fileIgnore, subF.Name()) {
 							continue
 						}
+						if include(imageExtensions, subF.Name()){
+							thumbnail = pathQuery.Name + "/" + f.Name() + "/" + subF.Name()
+							break
+						}
 					}
-
 			}
 			fileInfo := FileInfo{Name: f.Name(), Size: f.Size(), Mode: f.Mode(), ModTime: f.ModTime(), IsDir: f.IsDir(), Path: pathQuery.Name + "/" + f.Name(), Thumbnail: thumbnail}
 			fileInfoList = append(fileInfoList, fileInfo)

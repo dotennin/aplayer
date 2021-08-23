@@ -1,8 +1,8 @@
 new Vue({
   el: "#app",
-	componets: {
-		'title-cards': undefined
-	},
+  componets: {
+    "title-cards": undefined,
+  },
   data() {
     return {
       audio: null,
@@ -18,7 +18,7 @@ new Vue({
       pathList: [],
       coverList: [],
       currentCoverIndex: 0,
-			isCataloguePath: false,
+      isCataloguePath: false,
     };
   },
   methods: {
@@ -117,9 +117,9 @@ new Vue({
           ? this.currentCoverIndex + 1
           : 0;
     },
-		getSource(dir) {
-			return `mp3/${dir.Path}`
-		},
+    getSource(dir) {
+      return `mp3/${dir.Path}`;
+    },
     resetPlayer() {
       this.barWidth = 0;
       this.circleLeft = 0;
@@ -139,6 +139,23 @@ new Vue({
     },
     isMediafile(dir) {
       return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)$/.test(dir.Path);
+    },
+    encodePath(w) {
+      var map = {
+        "&": "%26",
+        "<": "%3c",
+        ">": "%3e",
+        '"': "%22",
+        "'": "%27",
+				" ": "%20",
+				"!": "&00A1",
+      };
+
+      var encodedPic = encodeURI(w);
+      var result = encodedPic.replace(/[&<>"']/g, function (m) {
+        return map[m];
+      });
+      return result;
     },
 
     async getPath(dir) {
@@ -162,16 +179,17 @@ new Vue({
         // clear cover list while accessing catalog path
         this.coverList = [];
         pathList.forEach((dir) => {
-					const splitName = dir.Name.split("@");
+          const splitName = dir.Name.split("@");
           dir.Name = splitName[1];
-					dir.RJNumber = splitName[0]
+          dir.RJNumber = splitName[0];
+          dir.Thumbnail = this.encodePath(dir.Thumbnail);
         });
       }
       if (isInCatalogDir) {
         pathList = pathList.filter((d) => {
           // don:t need to display image
           if (/(\.png)|(\.jpg)|(\.jpeg)$/.test(d.Name)) {
-            this.coverList.push(encodeURI("mp3" + d.Path));
+            this.coverList.push(this.encodePath("mp3" + d.Path));
             return false;
           }
           return true;
