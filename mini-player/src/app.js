@@ -239,7 +239,7 @@ Vue.component("navigator", {
 		<h1 class="title">
 			<nav>
 				<ul>
-					<li :class="{active: pathList.length -1 === index}" @click="handlePathClick(path)" v-for="(path, index) in pathList" :key="path">{{ path }}</li>
+					<li :class="{active: pathList.length -1 === index}" @click="handlePathClick(path)" v-for="(path, index) in pathList" :key="path"><span>{{ path }}</span></li>
 				</ul>
 			</nav>
 		</h1>

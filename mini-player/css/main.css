@@ -408,8 +408,11 @@ body {
   border: 1px solid;
   padding: 7px;
   transition: 0.3s all cubic-bezier(0.23, 1, 0.32, 1);
+  max-width: 180px; }
+
+.title ul li span {
   display: inline-block;
-  max-width: 180px;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis; }
@@ -436,7 +439,8 @@ body {
   border-bottom: 11px solid transparent;
   border-left: 15px solid;
   border-right: 15px solid transparent;
-  margin-left: 8px; }
+  margin-left: 8px;
+  margin-top: 2px; }
 
 p {
   line-height: 1.5em; }

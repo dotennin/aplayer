@@ -450,11 +450,14 @@ body {
 			border: 1px solid;
 			padding: 7px;
 			transition: 0.3s all $hoverEasing;
-			display: inline-block;
 			max-width: 180px;
-			white-space: nowrap;
-			overflow: hidden !important;
-			text-overflow: ellipsis;
+			span {
+				display: inline-block;
+				width: 100%;
+				white-space: nowrap;
+				overflow: hidden !important;
+				text-overflow: ellipsis;
+			}
 			&.active {
 				color: bisque;
 				transform: scale(1.1);
@@ -478,6 +481,7 @@ body {
 				border-left: 15px solid;
 				border-right: 15px solid transparent;
 				margin-left: 8px;
+				margin-top: 2px;
 			}
 		}
 	}
