@@ -240,7 +240,7 @@ Vue.component("navigator", {
 		<h1 class="title">
 			<nav>
 				<ul>
-					<li @click="handlePathClick(path)" v-for="(path) in pathList" :key="path">{{ path }}</li>
+					<li :class="{active: pathList.length -1 === index}" @click="handlePathClick(path)" v-for="(path, index) in pathList" :key="path">{{ path }}</li>
 				</ul>
 			</nav>
 		</h1>
@@ -262,7 +262,6 @@ Vue.component("navigator", {
 		},
 	},
   created() {
-		console.log(this.getPath)
     this.pathList = ["HOME", ...this.path.split("/").filter((p) => p)];
   },
 });
