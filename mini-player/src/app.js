@@ -239,7 +239,7 @@ Vue.component("navigator", {
 		<h1 class="title">
 			<nav>
 				<ul>
-					<li :class="{active: pathList.length -1 === index}" @click="handlePathClick(path)" v-for="(path, index) in pathList" :key="path"><span>{{ path }}</span></li>
+					<li :class="{active: pathList.length -1 === index}" @click="handlePathClick(index)" v-for="(path, index) in pathList" :key="path"><span>{{ path }}</span></li>
 				</ul>
 			</nav>
 		</h1>
@@ -252,11 +252,20 @@ Vue.component("navigator", {
     pathList: [],
   }),
   methods: {
-    handlePathClick(path) {
+    handlePathClick(pathIndex) {
       const dir = { Path: "" };
-      if (path !== `HOME`) {
-        dir.Path = `/${path}`;
-      }
+			const targetPath = this.pathList[pathIndex]
+			this.pathList.map((path, index) => {
+				if (index === 0) {
+					path = ''
+				}
+				if (index <= pathIndex && index > 0) {
+					dir.Path += `/${path}`
+				}
+			})
+      // if (path !== `HOME`) {
+      //   dir.Path = `/${path}`;
+      // }
       this.getPath(dir);
     },
     filterPathList(path) {
