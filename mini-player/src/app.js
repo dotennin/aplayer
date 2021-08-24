@@ -1,7 +1,7 @@
 new Vue({
   el: "#app",
   componets: {
-    "title-cards": undefined,
+    "navigator": undefined,
   },
   data() {
     return {
@@ -19,6 +19,7 @@ new Vue({
       coverList: [],
       currentCoverIndex: 0,
       isCataloguePath: false,
+			navigatorPath: ''
     };
   },
   methods: {
@@ -149,6 +150,7 @@ new Vue({
         "'": "%27",
 				" ": "%20",
 				"!": "&00A1",
+				"/": "%2F",
       };
 
       var encodedPic = encodeURI(w);
@@ -166,6 +168,8 @@ new Vue({
       if (shouldPlayMedia) {
         return this.play(dir);
       }
+
+			this.navigatorPath = dir.Path
 
       let pathList = await fetch(`api/path?name=${encodeURI(dir.Path)}`).then(
         (r) => r.json()
@@ -228,5 +232,37 @@ new Vue({
       link.as = "image";
       document.head.appendChild(link);
     }
+  },
+});
+
+Vue.component("navigator", {
+  template: `
+		<h1 class="title">
+			<nav>
+				<ul>
+					<li @click="handlePathClick(path)" v-for="(path) in pathList" :key="path">{{ path }}</li>
+				</ul>
+			</nav>
+		</h1>
+	`,
+  props: {
+    path: { type: String },
+    getPath: { type: Function },
+  },
+  data: () => ({
+    pathList: [],
+  }),
+	methods: {
+		handlePathClick(path) {
+			const dir = {Path: ''}
+			if (path !== `HOME`) {
+				dir.Path = `/${path}`
+			}
+			this.getPath(dir)
+		},
+	},
+  created() {
+		console.log(this.getPath)
+    this.pathList = ["HOME", ...this.path.split("/").filter((p) => p)];
   },
 });
