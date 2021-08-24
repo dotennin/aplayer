@@ -169,8 +169,6 @@ new Vue({
         return this.play(dir);
       }
 
-			this.navigatorPath = dir.Path
-
       let pathList = await fetch(`api/path?name=${encodeURI(dir.Path)}`).then(
         (r) => r.json()
       );
@@ -204,6 +202,7 @@ new Vue({
         this.currentTrack = this.tracks[0];
       }
 
+			this.navigatorPath = dir.Path
       this.pathList = pathList;
     },
   },
@@ -252,16 +251,28 @@ Vue.component("navigator", {
   data: () => ({
     pathList: [],
   }),
-	methods: {
-		handlePathClick(path) {
-			const dir = {Path: ''}
-			if (path !== `HOME`) {
-				dir.Path = `/${path}`
-			}
-			this.getPath(dir)
-		},
-	},
+  methods: {
+    handlePathClick(path) {
+      const dir = { Path: "" };
+      if (path !== `HOME`) {
+        dir.Path = `/${path}`;
+      }
+      this.getPath(dir);
+    },
+    filterPathList(path) {
+      this.pathList = ["HOME", ...path.split("/").filter((p) => p)];
+    },
+  },
+  watch: {
+    path: {
+      // the callback will be called immediately after the start of the observation
+      immediate: true,
+      handler(newPath, _) {
+        this.pathList = ["HOME", ...newPath.split("/").filter((p) => p)];
+      },
+    },
+  },
   created() {
-    this.pathList = ["HOME", ...this.path.split("/").filter((p) => p)];
+    this.filterPathList(this.path);
   },
 });

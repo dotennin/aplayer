@@ -407,18 +407,25 @@ body {
   cursor: pointer;
   border: 1px solid;
   padding: 7px;
-  transition: 0.3s all cubic-bezier(0.23, 1, 0.32, 1); }
+  transition: 0.3s all cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-block;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis; }
 
 .title ul li.active {
   color: bisque;
   transform: scale(1.1);
-  box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36); }
+  box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
+  pointer-events: none; }
 
 .title ul li:hover {
   transform: scale(1.1);
   box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36); }
 
 .title ul li:after {
+  pointer-events: none;
   content: "";
   background: inherit;
   width: 0;
