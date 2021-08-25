@@ -34,82 +34,79 @@
   </head>
   <body>
 	<div class="wrapper" id="app">
-			<navigator :get-path="getPath" :path="navigatorPath" v-if="navigatorPath"></navigator>
-		<section>
-			<div class="container">
-				<card v-if="isCataloguePath" v-for="(dir) in pathList" :key="dir.Name" @click.native="getPath(dir)" :data-image="`mp3${dir.Thumbnail}`">
-					<h1 slot="header">{{ dir.Name }}</h1>
-					<p slot="content">{{ dir.RJNumber }}</p>
-				</card>
-				<div v-if="!isCataloguePath" class="player">
-					<ol class="play-list">
-						<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" :class="{active : currentTrack === dir}">
-							{{ dir.Name }}
-						</li>
-					</ol>
-				</div>
+		<navigator :get-path="getPath" :path="navigatorPath" v-if="navigatorPath"></navigator>
+		<div class="container">
+			<card v-if="isCataloguePath" v-for="(dir) in pathList" :key="dir.Name" @click.native="getPath(dir)" :data-image="`mp3${dir.Thumbnail}`">
+				<h1 slot="header">{{ dir.Name }}</h1>
+				<p slot="content">{{ dir.RJNumber }}</p>
+			</card>
+			<div v-if="isPlayListOpen" class="player">
+				<ol class="play-list">
+					<li v-for="(dir) in pathList" :key="dir.Name" @click="getPath(dir)" :class="{active : currentTrack === dir}">
+						{{ dir.Name }}
+					</li>
+				</ol>
 			</div>
-		</section>
-			<div class="player" v-if="coverList.length > 0">
-        <div class="player__top">
+			<div class="player" v-if="currentTrack && !isPlayListOpen">
+				<div class="player__top">
 					<div class="player-cover">
-            <transition-group :name="transitionName">
-                <div class="player-cover__item" v-if="$index === currentCoverIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover" @click="nextCover"></div>
-            </transition-group>
-          </div>
-					<div class="player-controls" v-if="tracks.length > 0">
-            <div class="player-controls__item" @click="prevTrack">
-              <svg class="icon">
-                <use xlink:href="#icon-hamburger-menu"></use>
-              </svg>
-            </div>
-            <div class="player-controls__item -favorite" :class="{ active : currentTrack?.Favorited }" @click="favorite">
-              <svg class="icon">
-                <use xlink:href="#icon-heart-o"></use>
-              </svg>
-            </div>
-            <!-- <a :href="currentTrack.url" target="_blank" class="player-controls__item"> -->
-            <!--   <svg class="icon"> -->
-            <!--     <use xlink:href="#icon-link"></use> -->
-            <!--   </svg> -->
-            <!-- </a> -->
-            <div class="player-controls__item" @click="prevTrack">
-              <svg class="icon">
-                <use xlink:href="#icon-prev"></use>
-              </svg>
-            </div>
-            <div class="player-controls__item" @click="nextTrack">
-              <svg class="icon">
-                <use xlink:href="#icon-next"></use>
-              </svg>
-            </div>
-            <div class="player-controls__item -xl js-play" @click="play()">
-              <svg class="icon">
-                <use xlink:href="#icon-pause" v-if="isTimerPlaying"></use>
-                <use xlink:href="#icon-play" v-else></use>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="progress" ref="progress">
-          <div class="progress__top">
-            <div class="album-info" v-if="currentTrack">
-              <div class="album-info__name">{{ currentTrack.Name }}</div>
-            </div>
-            <div class="progress__duration">{{ duration }}</div>
-          </div>
-          <div class="progress__bar" @click="clickProgress">
-            <div class="progress__current" :style="{ width : barWidth }"></div>
-          </div>
-          <div class="progress__time">{{ currentTime }}</div>
-        </div>
-        <div v-cloak></div>
-      </div>
+						<transition-group :name="transitionName">
+								<div class="player-cover__item" v-if="$index === currentCoverIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover" @click="nextCover"></div>
+						</transition-group>
+					</div>
+					<div class="player-controls">
+						<div class="player-controls__item" @click="isPlayListOpen = true">
+							<svg class="icon">
+								<use xlink:href="#icon-hamburger-menu"></use>
+							</svg>
+						</div>
+						<div class="player-controls__item -favorite" :class="{ active : currentTrack?.Favorited }" @click="favorite">
+							<svg class="icon">
+								<use xlink:href="#icon-heart-o"></use>
+							</svg>
+						</div>
+						<!-- <a :href="currentTrack.url" target="_blank" class="player-controls__item"> -->
+						<!--   <svg class="icon"> -->
+						<!--     <use xlink:href="#icon-link"></use> -->
+						<!--   </svg> -->
+						<!-- </a> -->
+						<div class="player-controls__item" @click="prevTrack">
+							<svg class="icon">
+								<use xlink:href="#icon-prev"></use>
+							</svg>
+						</div>
+						<div class="player-controls__item" @click="nextTrack">
+							<svg class="icon">
+								<use xlink:href="#icon-next"></use>
+							</svg>
+						</div>
+						<div class="player-controls__item -xl js-play" @click="play()">
+							<svg class="icon">
+								<use xlink:href="#icon-pause" v-if="isTimerPlaying"></use>
+								<use xlink:href="#icon-play" v-else></use>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div class="progress" ref="progress">
+					<div class="progress__top">
+						<div class="album-info" v-if="currentTrack">
+							<div class="album-info__name">{{ currentTrack.Name }}</div>
+						</div>
+						<div class="progress__duration">{{ duration }}</div>
+					</div>
+					<div class="progress__bar" @click="clickProgress">
+						<div class="progress__current" :style="{ width : barWidth }"></div>
+					</div>
+					<div class="progress__time">{{ currentTime }}</div>
+				</div>
+				<div v-cloak></div>
+			</div>
+		</div>
       <!-- <a href="https://github.com/dotennin/aplayer" target="_blank" class="github-btn"> -->
       <!--   See on GitHub -->
       <!-- </a> -->
-    </div>
-
+	</div>
     <svg xmlns="http://www.w3.org/2000/svg" hidden xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <symbol id="icon-heart-o" viewBox="0 0 32 32">

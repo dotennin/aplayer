@@ -19,11 +19,15 @@ new Vue({
       coverList: [],
       currentCoverIndex: 0,
       isCataloguePath: false,
-			navigatorPath: ''
+			navigatorPath: '',
+			isPlayListOpen: true,
     };
   },
   methods: {
     play(track) {
+			if (this.currentTrack === track) {
+				return
+			}
       if (track) {
         this.currentTrack = track;
         this.audio.src = this.getSource(track);
@@ -166,6 +170,7 @@ new Vue({
       }
       const shouldPlayMedia = this.isMediafile(dir);
       if (shouldPlayMedia) {
+				this.isPlayListOpen = false
         return this.play(dir);
       }
 
@@ -180,13 +185,16 @@ new Vue({
       if (this.isCataloguePath) {
         // clear cover list while accessing catalog path
         this.coverList = [];
+				this.isPlayListOpen = false
         pathList.forEach((dir) => {
           const splitName = dir.Name.split("@");
           dir.Name = splitName[1];
           dir.RJNumber = splitName[0];
           dir.Thumbnail = this.encodePath(dir.Thumbnail);
         });
-      }
+      } else {
+				this.isPlayListOpen = true
+			}
       if (isInCatalogDir) {
         pathList = pathList.filter((d) => {
           // don:t need to display image
