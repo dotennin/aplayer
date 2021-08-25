@@ -20,9 +20,9 @@ body {
 .wrapper {
   width: 100%;
   display: flex;
+	align-content: center;
   align-items: center;
   min-height: 100vh;
-  // background: url(../img/bg.png) no-repeat center;
   background-size: cover;
 	justify-content: flex-start;
   flex-direction: column;
@@ -473,9 +473,11 @@ h1+p, p+p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+	width: 100%;
+
 
   @media screen and (max-width: 576px), (max-height: 500px) {
-		padding: 20px
+		padding: 20px 0;
 	}
 }
 
@@ -620,24 +622,24 @@ ol.play-list {
 		border-radius: 15px;
     transition: 0.3s all $hoverEasing;
 		&:hover {
+			background-color: bisque;
 			transform: scale(1.05);
 			box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
 		}
 
 		&.active {
-			color: #71829e;
+			color: #d6831f;
 			transition: all 0.3s ease-in-out;
-		}
-		&.active::before {
-			content: "";
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			border-radius: 50%;
-			background: #fff;
-			transform: scale(0.5);
-			opacity: 0;
-			box-shadow: 0px 5px 10px 0px rgb(76,70,124/20%);
+			&::before {
+				content: "";
+				position: absolute;
+				border-radius: 50%;
+				left: -17px;
+				border-top: 11px solid transparent;
+				border-bottom: 11px solid transparent;
+				border-left: 15px solid;
+				border-right: 15px solid transparent;
+			}
 		}
 	}
 }
