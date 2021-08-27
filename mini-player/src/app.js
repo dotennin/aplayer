@@ -166,13 +166,14 @@ new Vue({
 
     async getPath(dir) {
       if (!dir) {
-        dir = { Path: "" };
+        dir = { Path: localStorage.getItem('CURRENT_PATH') ?? "" };
       }
       const shouldPlayMedia = this.isMediafile(dir);
       if (shouldPlayMedia) {
 				this.isPlayListOpen = false
         return this.play(dir);
       }
+			localStorage.setItem('CURRENT_PATH', dir.Path)
 
       let pathList = await fetch(`api/path?name=${encodeURI(dir.Path)}`).then(
         (r) => r.json()
