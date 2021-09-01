@@ -192,6 +192,7 @@ new Vue({
       if (this.isCataloguePath) {
         // clear cover list while accessing catalog path
         this.coverList = [];
+				pathList = pathList.sort((a, b) => a.ModTime > b.ModTime ? -1 : 1)
 				this.isPlayListOpen = false
         pathList.forEach((dir) => {
           const splitName = dir.Name.split("@");
