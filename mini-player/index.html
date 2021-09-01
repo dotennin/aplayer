@@ -50,9 +50,12 @@
 			<div class="player" v-if="currentTrack && !isPlayListOpen">
 				<div class="player__top">
 					<div class="player-cover">
-						<transition-group :name="transitionName">
-								<div class="player-cover__item" v-if="$index === currentCoverIndex" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" :key="cover" @click="nextCover"></div>
-						</transition-group>
+						<!-- <transition-group :name="transitionName"> -->
+						<!-- 		<span class="player-cover__item" v-if="$index === currentCoverIndex" v-bind:key="cover" :style="{ backgroundImage: `url(${cover})` }"  v-for="(cover, $index) in coverList" @click="nextCover"></span> -->
+						<!-- </transition-group> -->
+					<transition name="fade">
+								<span class="player-cover__item" v-if="coverList[currentCoverIndex]" :style="{ backgroundImage: `url(${coverList[currentCoverIndex]})` }" @click="nextCover"></span>
+					</transition>
 					</div>
 					<div class="player-controls">
 						<div class="player-controls__item" @click="isPlayListOpen = true">

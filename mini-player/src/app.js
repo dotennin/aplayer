@@ -178,6 +178,12 @@ new Vue({
       let pathList = await fetch(`api/path?name=${encodeURI(dir.Path)}`).then(
         (r) => r.json()
       );
+			
+			// if the path is invalid clear localStorage and research again
+			if (!pathList) {
+				localStorage.setItem('CURRENT_PATH', '')
+				return this.getPath()
+			}
 
       const slashCount = dir.Path.match(/\//g);
       this.isCataloguePath = slashCount && slashCount.length === 1;
