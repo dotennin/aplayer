@@ -1,0 +1,11 @@
+{
+  "web_apps": [
+    {
+      "manifest": "https://play.dotenn.com/manifest.webmanifest",
+      "details": {
+        "paths": ["/*"],
+        "exclude_paths": ["/internal/*"]
+      }
+    }
+  ]
+}

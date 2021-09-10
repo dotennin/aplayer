@@ -6,6 +6,9 @@
 	"theme_color": "#188aea",
 	"start_url": "/",
 	"scope": "/",
+	"url_handlers": [
+		{"origin": "https://play.dotenn.com"}
+	],
 	"icons": [
 		{
 			"src": "\/icons\/android-chrome-36x36.png",
