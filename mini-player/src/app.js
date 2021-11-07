@@ -143,7 +143,7 @@ new Vue({
         !this.tracks[this.currentTrackIndex].Favorited;
     },
     isMediafile(dir) {
-      return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)$/.test(dir.Path);
+      return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)|(\.m4a)$/.test(dir.Path);
     },
     encodePath(w) {
       var map = {
@@ -155,6 +155,7 @@ new Vue({
 				" ": "%20",
 				"!": "&00A1",
 				"/": "%2F",
+				"#": "%23"
       };
 
       var encodedPic = encodeURI(w);
