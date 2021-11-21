@@ -143,7 +143,7 @@ new Vue({
         !this.tracks[this.currentTrackIndex].Favorited;
     },
     isMediafile(dir) {
-      return /(\.mp3)|(\.mp4)|(\.wav)|(\.flac)|(\.m4a)$/.test(dir.Path);
+      return /(\.mp3)|(\.mp4)|(\.avi)|(\.wav)|(\.flac)|(\.m4a)$/.test(dir.Path);
     },
     encodePath(w) {
       var map = {
@@ -207,8 +207,20 @@ new Vue({
       if (isInCatalogDir) {
         pathList = pathList.filter((d) => {
           // don:t need to display image
-          if (/(\.png)|(\.jpg)|(\.jpeg)$/.test(d.Name)) {
-            this.coverList.push(this.encodePath("mp3" + d.Path));
+					if (d.Name === 'images') {
+						fetch(`api/path?name=${encodeURI(d.Path)}`)
+              .then((r) => r.json())
+              .then((response) => {
+								this.coverList = response.map((imageContext) =>
+                  this.encodePath("mp3" + imageContext.Path)
+                );
+              });
+								return false
+					}
+
+          if (/(\.png)|(\.webp)|(\.jpg)|(\.jpeg)$/.test(d.Name)) {
+						// don:t need to add the main image to coverList for now
+            // this.coverList.push(this.encodePath("mp3" + d.Path));
             return false;
           }
           return true;
