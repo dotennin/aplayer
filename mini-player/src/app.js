@@ -29,7 +29,12 @@ new Vue({
 				return
 			}
       if (track) {
-        this.currentTrack = track;
+				const targetTrack = this.tracks.find(t => t.Path === track.Path)
+				if (!targetTrack) {
+          alert(track.Path + "cannot be found in the tracks");
+          return;
+        }
+        this.currentTrack = targetTrack;
         this.audio.src = this.getSource(track);
       } else if (!this.audio.src) {
         this.currentTrack = this.tracks[0];
@@ -164,6 +169,16 @@ new Vue({
       });
       return result;
     },
+		
+		fetchCoverList(path) {
+			fetch(`api/path?name=${encodeURI(path)}`)
+				.then((r) => r.json())
+				.then((response) => {
+					this.coverList = response.map((imageContext) =>
+						this.encodePath("mp3" + imageContext.Path)
+					);
+				});
+		},
 
     async getPath(dir) {
       if (!dir) {
@@ -208,14 +223,8 @@ new Vue({
         pathList = pathList.filter((d) => {
           // don:t need to display image
 					if (d.Name === 'images') {
-						fetch(`api/path?name=${encodeURI(d.Path)}`)
-              .then((r) => r.json())
-              .then((response) => {
-								this.coverList = response.map((imageContext) =>
-                  this.encodePath("mp3" + imageContext.Path)
-                );
-              });
-								return false
+						this.fetchCoverList(d.Path)
+						return false
 					}
 
           if (/(\.png)|(\.webp)|(\.jpg)|(\.jpeg)$/.test(d.Name)) {
