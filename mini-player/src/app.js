@@ -158,13 +158,14 @@ new Vue({
         '"': "%22",
         "'": "%27",
 				" ": "%20",
-				"!": "&00A1",
 				"/": "%2F",
-				"#": "%23"
+				"#": "%23",
+				"(": "%28",
+				")": "%29",
       };
 
       var encodedPic = encodeURI(w);
-      var result = encodedPic.replace(/[&<>"']/g, function (m) {
+      var result = encodedPic.replace(/[&<>" \/()']/g, function (m) {
         return map[m];
       });
       return result;
